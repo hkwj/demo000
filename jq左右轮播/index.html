@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+*{
+    margin:0; padding:0; list-style:none;
+}
+#banner{
+    width:890px; height:372px;
+    overflow:hidden; 
+    border:5px solid pink;
+    margin:0 auto; position:relative;
+}
+#ul1{
+    width:3560px;
+    position:absolute;
+    left:0; top:0;
+}
+#ul1 li{
+    float:left; width:890px;
+    height:372px;
+}
+#button{
+    width:300px; height:60px;
+    position:absolute; right:10px; bottom:30px;
+    border:3px solid green;
+}
+#button span{
+    float:left; width:50px; height:50px;
+    border-radius:50%; border:2px solid red;
+    text-align:center; line-height:50px;
+    font:40px "微软雅黑"; margin-left:10px;
+    margin-right:10px; margin-top:3px;
+}
+#button span.now{
+    color:#fff; border:2px dashed gold;
+}
+</style>
+</head>
+<body>
+	<div id="banner">
+    	<ul id="ul1">
+        	<li><img src="img/banner1.png"/></li>
+            <li><img src="img/banner2.png"/></li>
+            <li><img src="img/banner3.png"/></li>
+            <li><img src="img/banner4.png"/></li>
+        </ul>
+      <div id="button">
+        	<span class="now">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+        </div>
+    </div>
+
+
+<script src="jquery.js"></script>
+<script>
+$(document).ready(function(){
+    //span onmouseover
+    var _index=0;
+    $('#button span').mouseover(function(){
+        _index=$(this).index();
+        $(this).addClass('now').siblings().removeClass('now');
+        $('#ul1').stop().animate({left:-_index*890},500);
+    });
+
+    // autoPlay
+    function autoPlay(){
+        _index++;
+        _index%=4;
+        $('#button span').eq(_index).addClass('now').siblings().removeClass('now');
+        $('#ul1').stop().animate({left:-_index*890},500);
+        console.log(_index);
+    }
+
+    var timer=setInterval(autoPlay,3000);
+
+    //hover clearInterval
+    $('#banner').hover(function(){
+        clearInterval(timer);
+    },function(){
+        timer=setInterval(autoPlay,3000);
+    });
+})
+</script>
+</body>
+</html>
