@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+<style>
+*{
+	margin:0; padding:0; list-style:none;
+}
+div{
+	width:400px; height:400px; position:absolute;
+	left:200px; top:100px; border:1px solid #000;
+	border-radius:50%;
+}
+.smallBall{
+	width:30px; height:30px; background:#099;
+	border-radius:50%; position:absolute;
+	left:0; top:0; margin-left:-15px;
+	margin-top:-15px;
+}
+</style>
+
+
+
+</head>
+<body>
+
+<div></div>
+
+
+
+<script>
+var oBigBall=document.getElementsByTagName('div')[0];
+var r=oBigBall.offsetWidth/2;
+
+var oSmallBall=document.createElement('div');
+oSmallBall.className='smallBall';
+document.body.appendChild(oSmallBall);
+
+
+var rotate=0;
+var timer=setInterval(function(){
+	rotate++;
+	rotate%=360;
+	setPos(rotate);
+	oBigBall.onmouseover=function(){
+		clearInterval(timer);
+	};
+},20);
+oBigBall.onmouseout=function(){
+	timer=setInterval(function(){
+		rotate++;
+		rotate%=360;
+		setPos(rotate);
+},20);
+
+};
+function setPos(ang){
+	var a=Math.sin(a2r(ang))*r;
+	var b=Math.cos(a2r(ang))*r;
+	oSmallBall.style.left=oBigBall.offsetLeft+r+a+'px';
+	oSmallBall.style.top=oBigBall.offsetTop+r-b+'px';
+}
+
+function a2r(n){
+	return n*Math.PI/180;
+}
+</script>
+</body>
+</html>
