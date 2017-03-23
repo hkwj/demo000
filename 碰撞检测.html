@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+<style>
+*{
+	margin:0; padding:0; list-style:none;
+}
+#div1{
+	width:100px; height:100px; background:#656;
+	position:absolute; right:0; bottom:0;
+}
+.box{
+	width:100px; height:100px; background:#ccc;
+	float:left; margin:30px; 
+}
+</style>
+
+
+
+</head>
+<body>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box" id="div1"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+
+
+
+<script>
+var oDiv1=document.getElementById('div1');
+var aDiv=document.getElementsByTagName('div');
+oDiv1.onmousedown=function(ev){
+	var oEvt=ev||event;
+	var disX=oEvt.clientX-oDiv1.offsetLeft;
+	var disY=oEvt.clientY-oDiv1.offsetTop;
+	document.onmousemove=function(ev){
+		var oEvt=ev||event;
+		oDiv1.style.left=oEvt.clientX-disX+'px';
+		oDiv1.style.top=oEvt.clientY-disY+'px';
+
+		for (var i = 0; i < aDiv.length; i++) {
+			if(oDiv1==aDiv[i]) continue;
+			if(collTest(oDiv1,aDiv[i])){
+				aDiv[i].style.background="yellow";
+			} else {
+				aDiv[i].style.background='#ccc';
+			}
+		}
+	}
+	document.onmouseup=function(){
+		document.onmouseup=document.onmousemove=null;
+	}
+	return false;
+}
+
+function collTest(obj1,obj2){
+	var l1=obj1.offsetLeft;
+	var t1=obj1.offsetTop;
+	var r1=obj1.offsetLeft+obj1.offsetWidth;
+	var b1=obj1.offsetTop+obj1.offsetHeight;
+
+	var l2=obj2.offsetLeft;
+	var t2=obj2.offsetTop;
+	var r2=obj2.offsetLeft+obj2.offsetWidth;
+	var b2=obj2.offsetTop+obj2.offsetHeight;
+
+	if(l1>r2 || t1>b2 || r1<l2 || b1<t2){
+		return false;
+	} else {
+		return true;
+	}
+
+}
+</script>
+</body>
+</html>
