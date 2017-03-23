@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+*{margin:0; padding:0;}
+.box{
+	width:490px; height:350px;
+	position:relative; margin:10px auto;
+}
+img{
+
+}
+#mask{
+	width:490px; height:0px;
+	font:16px "微软雅黑"; line-height:40px;
+	text-align:center;background:#000;
+	opacity:0.6; filter:alpha(opacity=60);
+	position:absolute; left:0; bottom:0;
+	color:#fff;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+	<img src="1.jpg" alt="图片1">
+	<div id="mask">这是图片的说明</div>
+</div>
+
+<script>
+var oMask=document.getElementById('mask');
+var oDiv=document.getElementsByTagName('div')[0];
+var i=0;
+var timer=null;
+oDiv.onmouseover=function(){
+	clearInterval(timer);
+	timer=setInterval(function(){
+		i++;
+		oMask.style.height=i+'px';
+		if(i>=40){
+			clearInterval(timer);
+		}
+	},10)
+}
+oDiv.onmouseout=function(){
+	clearInterval(timer);
+	timer=setInterval(function(){
+		i--;
+		oMask.style.height=i+'px';
+		if(i<=0){
+			clearInterval(timer);
+		}
+	},10)
+}
+</script>
+</body>
+</html>
