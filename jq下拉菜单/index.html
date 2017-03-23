@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+*{margin: 0;padding: 0}
+body{font-size: 12px;font-family: "宋体","微软雅黑";}
+ul,li{list-style: none;}
+a:link,a:visited{text-decoration: none;}
+.list{width: 210px;border-bottom:solid 1px #316a91;margin:40px auto 0 auto;}
+.list ul li{background-color:#467ca2; border:solid 1px #316a91; border-bottom:0;}
+.list ul li a{padding-left: 10px;color: #fff; font-size:12px; display: block; font-weight:bold; height:36px;line-height: 36px;position: relative;
+}
+.list ul li .inactive{ background:url(off.png) no-repeat 184px center;}
+.list ul li .inactives{background:url(on.png) no-repeat 184px center;} 
+.list ul li ul{display: none;}
+.list ul li ul li { border-left:0; border-right:0; background-color:#6196bb; border-color:#467ca2;}
+.list ul li ul li ul{display: none;}
+.list ul li ul li a{ padding-left:20px;}
+.list ul li ul li ul li { background-color:#d6e6f1; border-color:#6196bb; }
+.last{ background-color:#d6e6f1; border-color:#6196bb; }
+.list ul li ul li ul li a{ color:#316a91; padding-left:30px;}
+</style>
+
+
+
+<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.inactive').click(function(){
+		if($(this).siblings('ul').css('display')=='none'){
+			$(this).parent('li').siblings('li').removeClass('inactives');
+			$(this).addClass('inactives');
+			$(this).siblings('ul').slideDown(100).children('li');
+			if($(this).parents('li').siblings('li').children('ul').css('display')=='block'){
+				$(this).parents('li').siblings('li').children('ul').parent('li').children('a').removeClass('inactives');
+				$(this).parents('li').siblings('li').children('ul').slideUp(100);
+
+			}
+		}else{
+			$(this).removeClass('inactives');
+			
+			$(this).siblings('ul').slideUp(100);
+		
+			$(this).siblings('ul').children('li').children('ul').parent('li').children('a').addClass('inactives');
+			
+			$(this).siblings('ul').children('li').children('ul').slideUp(100);
+
+			
+			$(this).siblings('ul').children('li').children('a').removeClass('inactives');
+		}
+	})
+});
+</script>
+</head>
+<body>
+<div class="list">
+	<ul class="yiji">
+		<li><a href="#">aaaaaa</a></li>
+		<li><a href="#" class="inactive">bbbbb</a>
+			<ul style="display: none">
+				<li><a href="#" class="inactive active"></a>
+					<ul>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+					</ul>
+				</li> 
+				<li class="last"><a href="#"></a></li> 
+			</ul>
+		</li>
+		<li><a href="#" class="inactive">cccc</a>
+			<ul style="display: none">
+				<li><a href="#" class="inactive active"></a>
+					<ul>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+					</ul>
+				</li> 
+				<li><a href="#" class="inactive active"></a>   
+					<ul>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#"></a></li>
+					</ul>
+				</li> 
+				<li class="last"><a href="#"></a></li> 
+			</ul>
+		</li>
+	</ul>
+</div>
+
+</body>
+</html>
