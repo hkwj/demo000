@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+*{margin:0; padding:0; list-style:none;}
+#div1{
+	width:100%; position:fixed; left:0; 
+	bottom:0; text-align:center;
+}
+#div1 img{
+	width:64px; height:64px;
+	border:1px solid #ccc;
+}
+</style>
+
+</head>
+
+<body>
+
+
+<div id="div1">
+	<img src="">
+	<img src="">
+	<img src="">
+	<img src="">
+	<img src="">
+</div>
+
+
+<script>
+var oDiv=document.getElementById('div1');
+var aImg=document.getElementsByTagName('img');
+var aIpt=document.getElementsByTagName('input');
+
+document.onmousemove=function(ev){
+	var oEvt=ev||event;
+	for (var i = 0; i < aImg.length; i++) {
+		var a=aImg[i].offsetLeft+aImg[i].offsetWidth/2-oEvt.clientX;
+		var b=aImg[i].offsetTop+oDiv.offsetTop+aImg[i].offsetHeight/2-oEvt.clientY;
+		var c=Math.sqrt(a*a+b*b);
+		var dis=c;
+
+		var scale=1-dis/600;
+		if(scale<0.5) scale=0.5;
+		aImg[i].style.width=128*scale+'px';
+		aImg[i].style.height=128*scale+'px';
+		
+	}
+}
+
+
+
+</script>
+</body>
+</html>
