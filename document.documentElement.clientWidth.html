@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+<style>
+*{
+	margin:0; padding:0; list-style:none;
+}
+div{
+    width:100%; height:300px;
+	border:1px solid #000; 
+}
+</style>
+</head>
+<body>
+
+<div></div>
+
+
+
+<script>
+var oDiv=document.getElementsByTagName('div')[0];
+
+window.onresize=function(){
+	var oW=document.documentElement.clientWidth;
+	if(oW>=1000){
+		oDiv.style.backgroundColor="#ff8";
+	} else if(oW>=750 && oW<1000){
+		oDiv.style.backgroundColor="green";
+	} else if(oW>=320 && oW<750){
+		oDiv.style.backgroundColor='#777';
+	} else {
+		oDiv.style.backgroundColor="#111";
+	}
+}
+
+
+</script>
+</body>
+</html>
