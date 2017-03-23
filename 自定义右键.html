@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+*{margin:0; padding:0; list-style:none;}
+#div1{
+      width:100px; height:100px; border:1px solid #000;
+      position:absolute; left:0; top:0; display:none;
+}
+#div1 ul li{
+      line-height:30px; border-bottom:1px dashed #ccc;
+      text-align:center;
+}
+#div1 li:hover{
+      background:#333; color:#fff; cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="div1">
+      <ul>
+      <li>复制</li>
+      <li>粘贴</li>
+      <li>全选</li>
+    </ul>
+</div>
+
+
+
+<script>
+var oDiv=document.getElementById('div1');
+document.oncontextmenu=function(ev){
+      var oEvt=ev||event;
+      oDiv.style.display='block';
+      oDiv.style.left=oEvt.clientX+'px';
+      oDiv.style.top=oEvt.clientY+'px';
+      ev.preventDefault();
+      //return false;
+}
+
+document.onclick=function(){
+      oDiv.style.display='none';
+}
+
+</script>
+</body>
+</html>
