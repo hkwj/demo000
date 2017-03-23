@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+*{margin:0; padding:0; list-style:none;}
+body{
+      overflow:hidden;
+}
+div{
+      width:100px; height:100px; background:#ccc;
+      position:absolute; left:0; top:0;
+}
+</style>
+
+</head>
+
+<body>
+<div></div>
+
+
+
+
+<script>
+var oDiv=document.getElementsByTagName('div')[0];
+var l=t=r=b=0;
+document.onkeydown=function(ev){
+      var oEvt=ev||event;
+      switch(oEvt.keyCode){
+            case 37:
+            l=true;
+            break;
+
+            case 38:
+            t=true;
+            break;
+
+            case 39:
+            r=true;
+            break;
+
+            case 40:
+            b=true;
+            break;
+      }
+};//onkeydown
+
+document.onkeyup=function(ev){
+      var oEvt=ev||event;
+      switch(oEvt.keyCode){
+            case 37:
+            l=false;
+            break;
+
+            case 38:
+            t=false;
+            break;
+
+            case 39:
+            r=false;
+            break;
+
+            case 40:
+            b=false;
+            break;
+      }
+};//onkeyup
+
+setInterval(function(){
+
+      var oLeft=parseInt(oDiv.offsetLeft);
+      var oTop=parseInt(oDiv.offsetTop);
+      if(oLeft<0) oLeft=0;
+      if(oTop<0) oTop=0;
+      if(oLeft>document.documentElement.clientWidth-oDiv.offsetWidth){
+            oLeft=document.documentElement.clientWidth-oDiv.offsetWidth;
+      };
+      if(oTop>document.documentElement.clientHeight-oDiv.offsetHeight){
+            oTop=document.documentElement.clientHeight-oDiv.offsetHeight;
+      }
+     
+      if(l) oDiv.style.left=oLeft-5+'px';
+      if(t) oDiv.style.top=oTop-5+'px';
+      if(r) oDiv.style.left=oLeft+5+'px';
+      if(b) oDiv.style.top=oTop+5+'px';
+},10)
+</script>
+</body>
+</html>
