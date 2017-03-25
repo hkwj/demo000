@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+*{margin:0; padding:0; list-style:none;}
+.logo{
+	width:100%; height:110px;
+	text-align:center; line-height:110px;
+	font:bold 30px "微软雅黑"; 
+}	
+hr{
+	display:block; width:100%; height:24px;
+	background:#f10180; border:none;
+}
+#nav_wrap{
+	width:100%;
+	height:48px; position:fixed;
+	top:-48px; left:0;
+}
+.nav{
+	width:1000px; height:48px; 
+	margin:0 auto; position:relative;
+	background:pink;
+}
+.nav span{
+	width:104px; height:48px; background:#ccc;
+	position:absolute; left:0;
+}
+.nav ul{
+	margin-left:126px;
+}
+.nav ul li{
+	float:left; height:20px; margin:8px 23px;
+	padding:5px 15px; font-size:14px; 
+	line-height:22px;
+}
+.nav ul li.cur{
+	background:#f10180; border-radius:6px;
+}
+.picList{
+	width:1000px; height:2000px; background:#ccc;
+	margin:0 auto;
+}
+</style>
+</head>
+<body>
+	<div class="logo">LOGO</div>
+	<hr>
+
+<!-- 向下划出的导航 -->
+	<div id="nav_wrap">
+		<div class="nav">
+			<span>图片</span>
+			<ul class="clearfix">
+				<li class="cur">导航</li>
+				<li>导航</li>
+				<li>导航</li>
+				<li>导航</li>
+				<li>导航导航</li>
+				<li>导航</li>
+				<li>导航</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="picList">
+		图片
+	</div>
+
+<script src="jquery-1.11.1.min.js"></script>
+<script>
+//导航hover
+	$(document).ready(function(){
+		$('#nav_wrap ul li').hover(function(){
+			$(this).siblings().removeClass('cur');
+			$(this).addClass('cur');
+		},function(){
+
+		});
+	});//导航hover
+
+//导航随scroll 划出
+$(document).ready().scroll(function(){
+	var scrH=$(document).scrollTop();
+	if(scrH>=135){
+		$('#nav_wrap').stop().animate({'top':0},600);
+	} else {
+		$('#nav_wrap').stop().animate({'top':'-48px'},600);
+	}
+});//导航随scroll 划出
+</script>
+</body>
+</html>
