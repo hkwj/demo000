@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+
+<style>
+*{margin:0; padding:0; list-style:none;}
+body{height:0;}
+#div1{
+	width:930px;  background:lightblue;
+	overflow:_hidden; margin:0 auto;
+}
+#div1 ul{
+	width:300px; float:left; margin-right:10px; 
+	background:#ccc;
+}
+#div1 ul li{
+	background:#333; margin-bottom:10px;
+}
+
+</style>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById('div1');
+	var aUl=oDiv.children;
+	function createLi(){
+		var oLi=document.createElement('li');
+		oLi.style.height=parseInt(100+200*Math.random())+'PX';
+		return oLi;
+	};
+
+	function insertToUl(count){
+		for(var j=0; j<count; j++){
+			var minHeight=999999999;
+			var minHeightIndex=-1;
+			for(var i=0; i<aUl.length; i++){
+				if(aUl[i].offsetHeight<minHeight){
+					minHeight=aUl[i].offsetHeight;
+					minHeightIndex=i;
+				}
+			};
+			aUl[minHeightIndex].appendChild(createLi());
+		}
+	};
+
+	insertToUl(18);
+
+	window.onscroll=function(){
+		var scrTop=document.documentElement.scrollTop || document.body.scrollTop;
+		var clientH=document.documentElement.clientHeight;
+		var bodyH=document.body.scrollHeight;
+		if(scrTop+clientH==bodyH){
+			alert('bottom');
+			insertToUl(4);
+		}
+	}
+
+
+}
+
+</script>
+</head>
+<body>
+
+<div id="div1">
+	<ul></ul>
+	<ul></ul>
+	<ul></ul>
+</div>
+
+
+</body>
+</html> 
